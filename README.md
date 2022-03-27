@@ -39,3 +39,4 @@ iOS OsushiのWebサイトのソースです。
 
 - [新しいIssue](https://github.com/ios-osushi/website/issues/new)
 - [新しいプルリクエスト](https://github.com/ios-osushi/website/compare)
+- [新しい議論](https://github.com/ios-osushi/website/discussions/new)
