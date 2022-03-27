@@ -1,22 +1,24 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.6
 
 import PackageDescription
 
 let package = Package(
-    name: "Website",
+    name: "IosOsushiWebsite",
     products: [
         .executable(
-            name: "Website",
-            targets: ["Website"]
-        )
+            name: "IosOsushiWebsite",
+            targets: ["IosOsushiWebsite"]
+        ),
     ],
     dependencies: [
-        .package(name: "Publish", url: "https://github.com/johnsundell/publish.git", from: "0.7.0")
+        .package(url: "https://github.com/johnsundell/publish.git", from: "0.8.0"),
     ],
     targets: [
-        .target(
-            name: "Website",
-            dependencies: ["Publish"]
-        )
+        .executableTarget(
+            name: "IosOsushiWebsite",
+            dependencies: [
+                .product(name: "Publish", package: "publish"),
+            ]
+        ),
     ]
 )
