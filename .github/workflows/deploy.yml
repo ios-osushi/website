@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: "swift:5.6"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        swift --version
+        swift package --version
+        swift build -v
+
+  deploy-github-pages:
+    runs-on: ubuntu-latest
+    container: "swift:5.6"
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup
+      run: make setup
+    - name: Generate the website
+      run: make generate
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        external_repository: ios-osushi/ios-osushi.github.io
+        publish_branch: master
+        publish_dir: ./Output
