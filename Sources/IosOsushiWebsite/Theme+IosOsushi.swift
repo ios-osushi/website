@@ -1,15 +1,13 @@
 /**
-*  Publish
-*  Copyright (c) John Sundell 2019
-*  MIT license, see LICENSE file for details
-*/
+ *  Publish
+ *  Copyright (c) John Sundell 2019
+ *  MIT license, see LICENSE file for details
+ */
 
 import Publish
 import Plot
 
 public extension Theme {
-    /// The default "Foundation" theme that Publish ships with, a very
-    /// basic theme mostly implemented for demonstration purposes.
     static var iosOsushi: Self {
         Theme(
             htmlFactory: IosOsushiHTMLFactory(),
@@ -19,8 +17,7 @@ public extension Theme {
 }
 
 private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
-    func makeIndexHTML(for index: Index,
-                       context: PublishingContext<Site>) throws -> HTML {
+    func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
             .head(for: index, on: context.site),
@@ -44,8 +41,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
 
-    func makeSectionHTML(for section: Section<Site>,
-                         context: PublishingContext<Site>) throws -> HTML {
+    func makeSectionHTML(for section: Section<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
             .head(for: section, on: context.site),
@@ -60,8 +56,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
 
-    func makeItemHTML(for item: Item<Site>,
-                      context: PublishingContext<Site>) throws -> HTML {
+    func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
             .head(for: item, on: context.site),
@@ -82,8 +77,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
 
-    func makePageHTML(for page: Page,
-                      context: PublishingContext<Site>) throws -> HTML {
+    func makePageHTML(for page: Page, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
@@ -95,8 +89,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
 
-    func makeTagListHTML(for page: TagListPage,
-                         context: PublishingContext<Site>) throws -> HTML? {
+    func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
@@ -106,9 +99,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                     H1("Browse all tags")
                     List(page.tags.sorted()) { tag in
                         ListItem {
-                            Link(tag.string,
-                                 url: context.site.path(for: tag).absoluteString
-                            )
+                            Link(tag.string, url: context.site.path(for: tag).absoluteString)
                         }
                         .class("tag")
                     }
@@ -119,8 +110,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
 
-    func makeTagDetailsHTML(for page: TagDetailsPage,
-                            context: PublishingContext<Site>) throws -> HTML? {
+    func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
@@ -133,7 +123,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                     }
 
                     Link("Browse all tags",
-                        url: context.site.tagListPath.absoluteString
+                         url: context.site.tagListPath.absoluteString
                     )
                     .class("browse-all")
 
@@ -182,10 +172,8 @@ private struct SiteHeader<Site: Website>: Component {
             List(Site.SectionID.allCases) { sectionID in
                 let section = context.sections[sectionID]
 
-                return Link(section.title,
-                    url: section.path.absoluteString
-                )
-                .class(sectionID == selectedSelectionID ? "selected" : "")
+                return Link(section.title, url: section.path.absoluteString)
+                    .class(sectionID == selectedSelectionID ? "selected" : "")
             }
         }
     }
