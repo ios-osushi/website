@@ -122,8 +122,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                         Span(page.tag.string).class("tag")
                     }
 
-                    Link("Browse all tags",
-                         url: context.site.tagListPath.absoluteString
+                    Link("Browse all tags", url: context.site.tagListPath.absoluteString
                     )
                     .class("browse-all")
 
