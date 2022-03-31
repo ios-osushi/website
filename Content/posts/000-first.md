@@ -20,8 +20,10 @@ iOS関連のニュースを定期的に発信し、iOS界隈に貢献するこ�
 
 ## きっかけ
 
-「Android DagashiのiOS版を作りたい」とツイートしたら反響があったためです。  
+「AndroidDagashiのiOS版を作りたい」とツイートしたら反響があったためです。  
 [https://twitter.com/the_uhooi/status/1503357643163074566](https://twitter.com/the_uhooi/status/1503357643163074566)
+
+※AndroidDagashiさんとiOS Osushi🍣は直接の関係はありません
 
 反響があっても需要があるかはわかりませんが、とりあえず作ってみることにしました。
 
@@ -41,6 +43,8 @@ Webサイトの構築は [Publish](https://github.com/JohnSundell/Publish) と�
 記事はMarkdownで書き、SwiftとMarkdownがわかれば使えるようになっています。
 
 Swiftを使ってWebサイトを構築する際の参考になれば嬉しいですし、 [Issue](https://github.com/ios-osushi/website/issues) や [PR](https://github.com/ios-osushi/website/pulls) を作成してくださるともっと嬉しいです。
+
+もっと気軽に、感想や指摘などをハッシュタグ [#ios_osushi](https://twitter.com/search?q=%23ios_osushi) 付きでつぶやいてくださるのも大歓迎です。
 
 ## 運営メンバー
 
