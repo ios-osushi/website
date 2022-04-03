@@ -25,7 +25,7 @@ struct IosOsushiWebsite: Publish.Website {
 try IosOsushiWebsite().publish(using: [
     .addMarkdownFiles(),
     .copyResources(),
-    .generateHTML(withTheme: .foundation),
+    .generateHTML(withTheme: .iosOsushi),
     .generateRSSFeed(including: [.posts]),
     .generateSiteMap(),
     .deploy(using: .gitHub("ios-osushi/ios-osushi.github.io", useSSH: false))
