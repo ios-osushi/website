@@ -210,11 +210,18 @@ private struct SiteFooter: Component {
     var body: Component {
         Footer {
             Paragraph {
+                Text("© 2022 iOS Osushi")
+            }
+            Paragraph {
                 Text("Generated using ")
                 Link("Publish", url: "https://github.com/johnsundell/publish")
             }
             Paragraph {
-                Link("RSS feed", url: "/feed.rss")
+                Link("Twitter", url: "https://twitter.com/ios_osushi")
+                Text(" | ")
+                Link("GitHub", url: "https://github.com/ios-osushi")
+                Text(" | ")
+                Link("RSS", url: "/feed.rss")
             }
         }
     }
