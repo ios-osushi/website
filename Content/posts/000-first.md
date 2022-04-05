@@ -1,6 +1,6 @@
 ---
 date: 2022-04-01 09:00
-description: 000 はじめに
+description: はじめに
 tags: notice
 ---
 # 000 はじめに
