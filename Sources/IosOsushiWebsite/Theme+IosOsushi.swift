@@ -70,7 +70,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                             makeTweetButtonWith(
                                 title: item.title,
                                 websiteName: context.site.name,
-                                url: Constants.baseURLString + item.path.absoluteString
+                                url: context.site.url.absoluteString + item.path.absoluteString
                             )
                             Div(item.content.body).class("content")
                             Span("Tagged with: ")

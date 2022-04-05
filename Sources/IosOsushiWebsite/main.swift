@@ -14,7 +14,7 @@ struct IosOsushiWebsite: Publish.Website {
     }
 
     // Update these properties to configure your website:
-    var url = URL(string: Constants.baseURLString)!
+    var url = URL(string: "https://ios-osushi.github.io")!
     var name = "iOS Osushi🍣"
     var description = "iOS関連のニュースを定期的に配信します。"
     var language: Language { .japanese }
