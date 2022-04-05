@@ -27,7 +27,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                     H1(index.title)
                     Paragraph(context.site.description)
                         .class("description")
-                    H2("Latest content")
+                    H2("最新の投稿")
                     ItemList(
                         items: context.allItems(
                             sortedBy: \.date,
