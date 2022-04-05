@@ -67,11 +67,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                     SiteHeader(context: context, selectedSelectionID: item.sectionID)
                     Wrapper {
                         Article {
-                            makeTweetButtonWith(
-                                title: item.title,
-                                websiteName: context.site.name,
-                                url: context.site.url.absoluteString + item.path.absoluteString
-                            )
+                            TweetButton(item: item, site: context.site)
                             Div(item.content.body).class("content")
                             Span("Tagged with: ")
                             ItemTagList(item: item, site: context.site)
@@ -145,17 +141,23 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
             }
         )
     }
-
-    private func makeTweetButtonWith(title: String, websiteName: String, url: String) -> Component {
-        let tweetText = tweetTextWith(title: title, websiteName: websiteName)
-        let hashtag = "ios_osushi"
-        let twitterAccount = "ios_osushi"
-        return Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(url)&hashtags=\(hashtag)&via=\(twitterAccount)")
-            .class("twitter-share-button")
-    }
-
-    private func tweetTextWith(title: String, websiteName: String) -> String {
-        "\(title) | \(websiteName)".urlEncoded()
+    
+    private struct TweetButton<Site: Website>: Component {
+        private var tweetText: String { tweetTextWith(title: item.title, websiteName: site.name) }
+        private var urlString: String { site.url.absoluteString + item.path.absoluteString }
+        private let hashtag = "ios_osushi"
+        private let twitterAccount = "ios_osushi"
+        
+        var item: Item<Site>
+        var site: Site
+        var body: Component {
+            Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(urlString)&hashtags=\(hashtag)&via=\(twitterAccount)")
+                .class("twitter-share-button")
+        }
+        
+        private func tweetTextWith(title: String, websiteName: String) -> String {
+            "\(title) | \(websiteName)".urlEncoded()
+        }
     }
 }
 
