@@ -69,6 +69,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                         Article {
                             makeTweetButtonWith(
                                 title: item.title,
+                                websiteName: context.site.name,
                                 url: baseURLString + item.path.absoluteString
                             )
                             Div(item.content.body).class("content")
@@ -145,16 +146,16 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
 
-    private func makeTweetButtonWith(title: String, url: String) -> Component {
-        let tweetText = tweetText(withTitle: title)
+    private func makeTweetButtonWith(title: String, websiteName: String, url: String) -> Component {
+        let tweetText = tweetTextWith(title: title, websiteName: websiteName)
         let hashtag = "ios_osushi"
         let twitterAccount = "ios_osushi"
         return Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(url)&hashtags=\(hashtag)&via=\(twitterAccount)")
             .class("twitter-share-button")
     }
 
-    private func tweetText(withTitle title: String) -> String {
-        title.urlEncoded()
+    private func tweetTextWith(title: String, websiteName: String) -> String {
+        "\(title) | \(websiteName)".urlEncoded()
     }
 }
 
