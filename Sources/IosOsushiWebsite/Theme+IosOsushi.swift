@@ -145,12 +145,12 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
     private struct TweetButton<Site: Website>: Component {
         private var urlString: String { site.url.absoluteString + item.path.absoluteString }
         private let hashtag = "ios_osushi"
-        private let twitterAccount = "ios_osushi"
+        private let username = "ios_osushi"
 
         var item: Item<Site>
         var site: Site
         var body: Component {
-            Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText())&url=\(urlString)&hashtags=\(hashtag)&via=\(twitterAccount)")
+            Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText())&url=\(urlString)&hashtags=\(hashtag)&via=\(username)")
                 .class("twitter-share-button")
         }
 
