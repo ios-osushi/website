@@ -1,6 +1,6 @@
 ---
 date: 2022-04-01 09:00
-description: はじめに
+description: はじめに、目的、きっかけ、運営方針、運営メンバー、おわりに
 tags: notice
 ---
 # 000 はじめに
