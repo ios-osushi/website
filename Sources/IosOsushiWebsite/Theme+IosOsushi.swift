@@ -67,7 +67,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                     Wrapper {
                         Article {
                             Div(item.content.body).class("content")
-                            Span("Tagged with: ")
+                            Span("タグ: ")
                             ItemTagList(item: item, site: context.site)
                         }
                     }
@@ -96,7 +96,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
             .body {
                 SiteHeader(context: context, selectedSelectionID: nil)
                 Wrapper {
-                    H1("Browse all tags")
+                    H1("すべてのタグ")
                     List(page.tags.sorted()) { tag in
                         ListItem {
                             Link(tag.string, url: context.site.path(for: tag).absoluteString)
@@ -118,11 +118,11 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                 SiteHeader(context: context, selectedSelectionID: nil)
                 Wrapper {
                     H1 {
-                        Text("Tagged with ")
+                        Text("タグ: ")
                         Span(page.tag.string).class("tag")
                     }
 
-                    Link("Browse all tags", url: context.site.tagListPath.absoluteString
+                    Link("すべてのタグを見る", url: context.site.tagListPath.absoluteString
                     )
                     .class("browse-all")
 
