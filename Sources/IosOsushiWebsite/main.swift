@@ -2,8 +2,6 @@ import Foundation
 import Publish
 import Plot
 
-let baseURLString = "https://ios-osushi.github.io"
-
 // This type acts as the configuration for your website.
 struct IosOsushiWebsite: Publish.Website {
     enum SectionID: String, WebsiteSectionID {
@@ -16,7 +14,7 @@ struct IosOsushiWebsite: Publish.Website {
     }
 
     // Update these properties to configure your website:
-    var url = URL(string: baseURLString)!
+    var url = URL(string: Constants.baseURLString)!
     var name = "iOS Osushi🍣"
     var description = "iOS関連のニュースを定期的に配信します。"
     var language: Language { .japanese }
