@@ -141,22 +141,21 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
             }
         )
     }
-    
+
     private struct TweetButton<Site: Website>: Component {
-        private var tweetText: String { tweetTextWith(title: item.title, websiteName: site.name) }
         private var urlString: String { site.url.absoluteString + item.path.absoluteString }
         private let hashtag = "ios_osushi"
         private let twitterAccount = "ios_osushi"
-        
+
         var item: Item<Site>
         var site: Site
         var body: Component {
-            Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(urlString)&hashtags=\(hashtag)&via=\(twitterAccount)")
+            Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText())&url=\(urlString)&hashtags=\(hashtag)&via=\(twitterAccount)")
                 .class("twitter-share-button")
         }
-        
-        private func tweetTextWith(title: String, websiteName: String) -> String {
-            "\(title) | \(websiteName)".urlEncoded()
+
+        private func tweetText() -> String {
+            "\(item.title) | \(site.name)".urlEncoded()
         }
     }
 }
