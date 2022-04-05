@@ -61,11 +61,17 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
             .lang(context.site.language),
             .head(for: item, on: context.site),
             .body(
+                .script(.async(), .src("https://platform.twitter.com/widgets.js")),
                 .class("item-page"),
                 .components {
                     SiteHeader(context: context, selectedSelectionID: item.sectionID)
                     Wrapper {
                         Article {
+                            makeTweetButtonWith(
+                                title: item.title,
+                                description: item.description,
+                                url: baseURLString + item.path.absoluteString
+                            )
                             Div(item.content.body).class("content")
                             Span("Tagged with: ")
                             ItemTagList(item: item, site: context.site)
@@ -138,6 +144,18 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                 SiteFooter()
             }
         )
+    }
+
+    private func makeTweetButtonWith(title: String, description: String, url: String) -> Component {
+        let tweetText = tweetTextWith(title: title, description: description)
+        let hashtag = "ios_osushi"
+        let twitterAccount = "ios_osushi"
+        return Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(url)&hashtags=\(hashtag)&via=\(twitterAccount)")
+            .class("twitter-share-button")
+    }
+
+    private func tweetTextWith(title: String, description: String) -> String {
+        "\(title) \(description)".urlEncoded()
     }
 }
 
