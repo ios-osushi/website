@@ -67,7 +67,10 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                     SiteHeader(context: context, selectedSelectionID: item.sectionID)
                     Wrapper {
                         Article {
-                            TweetButton(item: item, site: context.site)
+                            Div {
+                                TweetButton(item: item, site: context.site)
+                            }
+                            .class("article-buttons")
                             Div(item.content.body).class("content")
                             Span("Tagged with: ")
                             ItemTagList(item: item, site: context.site)
