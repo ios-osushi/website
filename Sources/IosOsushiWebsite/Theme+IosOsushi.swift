@@ -61,11 +61,16 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
             .lang(context.site.language),
             .head(for: item, on: context.site),
             .body(
+                .script(.async(), .src("https://platform.twitter.com/widgets.js")),
                 .class("item-page"),
                 .components {
                     SiteHeader(context: context, selectedSelectionID: item.sectionID)
                     Wrapper {
                         Article {
+                            Div {
+                                TweetButton(item: item, site: context.site)
+                            }
+                            .class("article-buttons")
                             Div(item.content.body).class("content")
                             Span("Tagged with: ")
                             ItemTagList(item: item, site: context.site)
@@ -138,6 +143,20 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                 SiteFooter()
             }
         )
+    }
+
+    private struct TweetButton<Site: Website>: Component {
+        private var tweetText: String { "\(item.title) | \(site.name)" }
+        private var urlString: String { site.url.absoluteString + item.path.absoluteString }
+        private let hashtag = "ios_osushi"
+        private let username = "ios_osushi"
+
+        var item: Item<Site>
+        var site: Site
+        var body: Component {
+            Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText.urlEncoded())&url=\(urlString.urlEncoded())&hashtags=\(hashtag.urlEncoded())&via=\(username.urlEncoded())")
+                .class("twitter-share-button")
+        }
     }
 }
 
