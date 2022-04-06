@@ -62,6 +62,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
             .head(for: item, on: context.site),
             .body(
                 .script(.async(), .src("https://platform.twitter.com/widgets.js")),
+                .script(.async(), .src("https://b.st-hatena.com/js/bookmark_button.js")),
                 .class("item-page"),
                 .components {
                     SiteHeader(context: context, selectedSelectionID: item.sectionID)
@@ -69,6 +70,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                         Article {
                             Div {
                                 TweetButton(item: item, site: context.site)
+                                HatebButton()
                             }
                             .class("article-buttons")
                             Div(item.content.body).class("content")
@@ -156,6 +158,24 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
         var body: Component {
             Link("ツイート", url: "https://twitter.com/intent/tweet?text=\(tweetText.urlEncoded())&url=\(urlString.urlEncoded())&hashtags=\(hashtag.urlEncoded())&via=\(username.urlEncoded())")
                 .class("twitter-share-button")
+        }
+    }
+
+    private struct HatebButton: Component {
+        var body: Component {
+            Link(url: "https://b.hatena.ne.jp/entry/") {
+                Image(
+                    url: "https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png",
+                    description: "このエントリーをはてなブックマークに追加"
+                )
+                .attribute(named: "width", value: "20")
+                .attribute(named: "height", value: "20")
+                .style("border: none;")
+            }
+            .class("hatena-bookmark-button")
+            .data(named: "hatena-bookmark-layout", value: "basic-label-counter")
+            .data(named: "hatena-bookmark-lang", value: "ja")
+            .attribute(named: "title", value: "このエントリーをはてなブックマークに追加")
         }
     }
 }
