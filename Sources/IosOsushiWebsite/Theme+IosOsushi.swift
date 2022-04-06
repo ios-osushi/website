@@ -72,7 +72,7 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                                 TweetButton(item: item, site: context.site)
                                 HatebButton()
                             }
-                            .class("article-buttons")
+                            .class("share-buttons")
                             Div(item.content.body).class("content")
                             Span("Tagged with: ")
                             ItemTagList(item: item, site: context.site)

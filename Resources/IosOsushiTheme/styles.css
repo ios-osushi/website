@@ -169,7 +169,7 @@ footer {
     }
 }
 
-.article-buttons {
+.share-buttons {
     display: flex;
     flex-wrap: wrap;
     row-gap: 5px;
