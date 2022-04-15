@@ -33,7 +33,7 @@ jobs:
     - name: Create post
       id: create_post
       run: |
-        POST_FILENAME="${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}.md"
+        POST_FILENAME="${{ github.event.inputs.post_number }}-${{ github.event.inputs.post_date }}.md"
         POST_FILE="./Content/posts/$POST_FILENAME"
         POST_YEAR=${${{ github.event.inputs.post_date }}:0:4}
         POST_MONTH=${${{ github.event.inputs.post_date }}:4:2}
