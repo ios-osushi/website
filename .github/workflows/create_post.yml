@@ -43,10 +43,9 @@ jobs:
         echo -e "---\ndate: $POST_DATE 09:00\ndescription: TBD\ntags: TBD\n---\n# ${{ github.event.inputs.post_number }} $POST_DATE\n\n## TBD\n\nTBD" > $POST_FILE
         git config user.name github-actions[bot]
         git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-        git switch "${{ steps.create_work_branch.outputs.work_branch_name }}"
         git add $POST_FILE
         git commit -m "Create $POST_FILENAME"
-        git push
+        git push origin ${{ steps.create_work_branch.outputs.work_branch_name }}
         echo "::set-output name=post_filename::$POST_FILENAME"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
