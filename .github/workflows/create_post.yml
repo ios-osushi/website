@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       post_number:
-        description: 'Post number. e.g. 001'
+        description: 'Post number. e.g.001'
         required: true 
         type: string
       post_date:
-        description: 'Post date. e.g. 20220404'
+        description: 'Post date. e.g.20220404'
         required: true 
         type: string
 
