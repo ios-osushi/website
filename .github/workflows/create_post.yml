@@ -35,9 +35,10 @@ jobs:
       run: |
         POST_FILENAME="${{ github.event.inputs.post_number }}-${{ github.event.inputs.post_date }}.md"
         POST_FILE="./Content/posts/$POST_FILENAME"
-        POST_YEAR=${${{ github.event.inputs.post_date }}:0:4}
-        POST_MONTH=${${{ github.event.inputs.post_date }}:4:2}
-        POST_DAY=${${{ github.event.inputs.post_date }}:6:2}
+        POST_DATE_BEFORE=${{ github.event.inputs.post_date }}
+        POST_YEAR=${POST_DATE_BEFORE:0:4}
+        POST_MONTH=${POST_DATE_BEFORE:4:2}
+        POST_DAY=${POST_DATE_BEFORE:6:2}
         POST_DATE=$POST_YEAR-$POST_MONTH-$POST_DAY
         touch $POST_FILE
         echo -e "---\ndate: $POST_DATE 09:00\ndescription: TBD\ntags: TBD\n---\n# ${{ github.event.inputs.post_number }} $POST_DATE\n\n## TBD\n\nTBD" > $POST_FILE
