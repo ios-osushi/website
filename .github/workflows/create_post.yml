@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       post_number:
-        description: 'Post number. e.g. 001'
+        description: 'Post number. e.g.001'
         required: true 
         type: string
       post_date:
-        description: 'Post date. e.g. 20220404'
+        description: 'Post date. e.g.20220404'
         required: true 
         type: string
 
@@ -22,6 +22,8 @@ jobs:
       id: create_work_branch
       run: |
         WORK_BRANCH_NAME="feature/${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}"
+        git config user.name github-actions[bot]
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         git switch -c "$WORK_BRANCH_NAME"
         git push origin "$WORK_BRANCH_NAME"
         echo "::set-output name=work_branch_name::$WORK_BRANCH_NAME"
@@ -31,20 +33,20 @@ jobs:
     - name: Create post
       id: create_post
       run: |
-        POST_FILENAME="${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}.md"
+        POST_FILENAME="${{ github.event.inputs.post_number }}-${{ github.event.inputs.post_date }}.md"
         POST_FILE="./Content/posts/$POST_FILENAME"
-        POST_YEAR=${${{ github.event.inputs.post_date }}:0:4}
-        POST_MONTH=${${{ github.event.inputs.post_date }}:4:2}
-        POST_DAY=${${{ github.event.inputs.post_date }}:6:2}
+        POST_DATE_BEFORE=${{ github.event.inputs.post_date }}
+        POST_YEAR=${POST_DATE_BEFORE:0:4}
+        POST_MONTH=${POST_DATE_BEFORE:4:2}
+        POST_DAY=${POST_DATE_BEFORE:6:2}
         POST_DATE=$POST_YEAR-$POST_MONTH-$POST_DAY
         touch $POST_FILE
         echo -e "---\ndate: $POST_DATE 09:00\ndescription: TBD\ntags: TBD\n---\n# ${{ github.event.inputs.post_number }} $POST_DATE\n\n## TBD\n\nTBD" > $POST_FILE
         git config user.name github-actions[bot]
         git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-        git switch "$WORK_BRANCH_NAME"
         git add $POST_FILE
         git commit -m "Create $POST_FILENAME"
-        git push
+        git push origin ${{ steps.create_work_branch.outputs.work_branch_name }}
         echo "::set-output name=post_filename::$POST_FILENAME"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
