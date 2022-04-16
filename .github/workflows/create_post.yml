@@ -28,7 +28,6 @@ jobs:
       run: |
         WORK_BRANCH_NAME="feature/${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}"
         git switch -c "$WORK_BRANCH_NAME"
-        git push origin "$WORK_BRANCH_NAME"
         echo "::set-output name=work_branch_name::$WORK_BRANCH_NAME"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
