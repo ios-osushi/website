@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       post_number:
-        description: 'Post number. e.g.001'
+        description: '3桁の連番。例：001'
         required: true 
         type: string
       post_date:
-        description: 'Post date. e.g.20220404'
+        description: '8桁の投稿日。例：20220404'
         required: true 
         type: string
 
@@ -18,17 +18,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Create work branch
+    - name: Set name and email to Git
+      run: |
+        git config --local user.name github-actions[bot]
+        git config --local user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+    - name: Create and switch work branch
       id: create_work_branch
       run: |
         WORK_BRANCH_NAME="feature/${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}"
-        git config user.name github-actions[bot]
-        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         git switch -c "$WORK_BRANCH_NAME"
-        git push origin "$WORK_BRANCH_NAME"
         echo "::set-output name=work_branch_name::$WORK_BRANCH_NAME"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create post
       id: create_post
@@ -42,8 +42,6 @@ jobs:
         POST_DATE=$POST_YEAR-$POST_MONTH-$POST_DAY
         touch $POST_FILE
         echo -e "---\ndate: $POST_DATE 09:00\ndescription: TBD\ntags: TBD\n---\n# ${{ github.event.inputs.post_number }} $POST_DATE\n\n## TBD\n\nTBD" > $POST_FILE
-        git config user.name github-actions[bot]
-        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         git add $POST_FILE
         git commit -m "Create $POST_FILENAME"
         git push origin ${{ steps.create_work_branch.outputs.work_branch_name }}
@@ -56,7 +54,7 @@ jobs:
         hub version
         hub pull-request \
           --message "Create ${{ steps.create_post.outputs.post_filename }}" \
-          --base "main" \
+          --base "${{ github.event.repository.default_branch }}" \
           --head "${{ steps.create_work_branch.outputs.work_branch_name }}" \
           --draft
       env:
