@@ -18,12 +18,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Set name and email to Git
+      run: |
+        git config user.name github-actions[bot]
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
     - name: Create work branch
       id: create_work_branch
       run: |
         WORK_BRANCH_NAME="feature/${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}"
-        git config user.name github-actions[bot]
-        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         git switch -c "$WORK_BRANCH_NAME"
         git push origin "$WORK_BRANCH_NAME"
         echo "::set-output name=work_branch_name::$WORK_BRANCH_NAME"
@@ -42,8 +45,6 @@ jobs:
         POST_DATE=$POST_YEAR-$POST_MONTH-$POST_DAY
         touch $POST_FILE
         echo -e "---\ndate: $POST_DATE 09:00\ndescription: TBD\ntags: TBD\n---\n# ${{ github.event.inputs.post_number }} $POST_DATE\n\n## TBD\n\nTBD" > $POST_FILE
-        git config user.name github-actions[bot]
-        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         git add $POST_FILE
         git commit -m "Create $POST_FILENAME"
         git push origin ${{ steps.create_work_branch.outputs.work_branch_name }}
