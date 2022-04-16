@@ -23,7 +23,7 @@ jobs:
         git config --local user.name github-actions[bot]
         git config --local user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-    - name: Create work branch
+    - name: Create and switch work branch
       id: create_work_branch
       run: |
         WORK_BRANCH_NAME="feature/${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}"
