@@ -146,6 +146,13 @@ a {
     line-height: 1.5em;
 }
 
+.content code {
+    padding: 0.1em 0.4em;
+    background-color: #eee;
+    border-radius: 4px;
+    font-family: Consolas, Menlo, Courier, monospace;
+}
+
 .browse-all {
     display: block;
     margin-bottom: 30px;
