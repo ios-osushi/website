@@ -130,6 +130,19 @@ a {
     overflow-wrap: break-word;
 }
 
+.content > ul {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.content ul {
+    margin-left: 1.5em;
+}
+
+.content li {
+    line-height: 1.5em;
+}
+
 .browse-all {
     display: block;
     margin-bottom: 30px;
