@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "collectionconcurrencykit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnsundell/collectionConcurrencyKit.git",
+      "state" : {
+        "revision" : "b4f23e24b5a1bff301efc5e70871083ca029ff95",
+        "version" : "0.2.0"
+      }
+    },
+    {
       "identity" : "files",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/johnsundell/files.git",
@@ -41,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/johnsundell/publish.git",
       "state" : {
-        "revision" : "1402af3cbe18df03fb6df701fdcf51471f98d0ff",
-        "version" : "0.8.0"
+        "revision" : "1c8ad00d39c985cb5d497153241a2f1b654e0d40",
+        "version" : "0.9.0"
       }
     },
     {
