@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "IosOsushiWebsite",
+    platforms: [.macOS(.v12)],
     products: [
         .executable(
             name: "IosOsushiWebsite",
