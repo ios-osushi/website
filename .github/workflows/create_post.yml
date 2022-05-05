@@ -56,9 +56,10 @@ jobs:
 
     - name: Create pull request
       run: |
-        hub version
-        hub pull-request \
-          --message "Create ${{ steps.create_post.outputs.post_filename }}" \
+        gh --version
+        gh pr create \
+          --title "Create ${{ steps.create_post.outputs.post_filename }}" \
+          --body "## スクリーンショット\n\n| `${{ steps.create_post.outputs.post_filename }}` |\n|:--:|\n|TBD|"
           --base "${{ github.event.repository.default_branch }}" \
           --head "${{ steps.create_work_branch.outputs.work_branch_name }}" \
           --draft
