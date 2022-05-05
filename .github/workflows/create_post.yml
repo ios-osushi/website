@@ -12,9 +12,13 @@ on:
         required: true 
         type: string
 
+permissions:
+  pull-requests: write
+
 jobs:
   create-post:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
 
