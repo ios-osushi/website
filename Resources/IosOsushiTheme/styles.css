@@ -64,8 +64,11 @@ h1 {
     font-size: 2em;
 }
 
-h2 {
-    margin: 20px 0;
+h2, h3, h4, h5, h6 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 p {
@@ -130,6 +133,26 @@ a {
     overflow-wrap: break-word;
 }
 
+.content > ul {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.content ul {
+    margin-left: 1.5em;
+}
+
+.content li {
+    line-height: 1.5em;
+}
+
+.content code {
+    padding: 0.1em 0.4em;
+    background-color: #eee;
+    border-radius: 4px;
+    font-family: Consolas, Menlo, Courier, monospace;
+}
+
 .browse-all {
     display: block;
     margin-bottom: 30px;
@@ -157,6 +180,10 @@ footer {
     }
 
     .item-list > li {
+        background-color: #333;
+    }
+    
+    .content code {
         background-color: #333;
     }
 
