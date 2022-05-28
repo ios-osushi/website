@@ -46,7 +46,7 @@ jobs:
         POST_DAY=${POST_DATE_BEFORE:6:2}
         POST_DATE=$POST_YEAR-$POST_MONTH-$POST_DAY
         touch $POST_FILE
-        echo -e "---\ndate: $POST_DATE 09:00\ndescription: TBD\ntags: TBD\n---\n# ${{ github.event.inputs.post_number }} $POST_DATE\n\n## TBD\n\n{ニュースなどを書く}\n\n## 各 OS のリリース情報\n\nApple が提供している OS のリリース情報です。\n\n### 正式版\n\n- [TBD](TBD)### 開発者向けベータ\n\n- [TBD](TBD)\n\n## OSS のリリース情報\n\niOS アプリ開発でよく使われている OSS のリリース情報です。\n\n### Apple\n\n#### TBD\n\n[TBD](TBD)\n\nTBD### サードパーティ\n\n#### TBD\n\n[TBD](TBD)\n\nTBD" > $POST_FILE
+        echo -e "---\ndate: $POST_DATE 09:00\ndescription: TBD\ntags: TBD\n---\n# ${{ github.event.inputs.post_number }} $POST_DATE\n\n## TBD\n\n{ニュースなどを書く}\n\n## 各 OS のリリース情報\n\nApple が提供している OS のリリース情報です。\n\n### 正式版\n\n- [TBD](TBD)\n\n### 開発者向けベータ\n\n- [TBD](TBD)\n\n## OSS のリリース情報\n\niOS アプリ開発でよく使われている OSS のリリース情報です。\n\n### Apple\n\n#### TBD\n\n[TBD](TBD)\n\nTBD### サードパーティ\n\n#### TBD\n\n[TBD](TBD)\n\nTBD" > $POST_FILE
         git add $POST_FILE
         git commit -m "Create $POST_FILENAME"
         git push origin ${{ steps.create_work_branch.outputs.work_branch_name }}
