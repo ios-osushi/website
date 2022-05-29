@@ -37,8 +37,10 @@ iOS OsushiのWebサイトのソースです。
 
 ## 貢献
 
-貢献していただけると嬉しいです :relaxed:
+貢献をお待ちしています :relaxed:
 
 - [新しいIssue](https://github.com/ios-osushi/website/issues/new)
 - [新しいプルリクエスト](https://github.com/ios-osushi/website/compare)
 - [新しい議論](https://github.com/ios-osushi/website/discussions/new)
+
+iOS関連のニュースは、お気軽にIssueで報告してくださると嬉しいです。
