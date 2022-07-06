@@ -1,7 +1,12 @@
 {
   "rules": {
     "preset-ja-technical-writing": {
-      "no-exclamation-question-mark": false
+      "no-exclamation-question-mark": false,
+      "max-kanji-continuous-len": {
+        allow: [
+          "世界開発者会議"
+        ]
+      }
     }
   }
 }
