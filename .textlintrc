@@ -8,6 +8,9 @@
         ]
       }
     }
+  },
+  "filters": {
+    "comments": true
   }
 }
 
