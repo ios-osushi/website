@@ -17,7 +17,8 @@
         "before": true,
         "after": true
       }
-    }
+    },
+    "no-mixed-zenkaku-and-hankaku-alphabet": true
   },
   "filters": {
     "comments": true
