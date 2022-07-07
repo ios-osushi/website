@@ -3,6 +3,7 @@
     "textlint": "^12.2.1",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-period-in-list-item": "^0.3.2",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
     "textlint-rule-preset-ja-technical-writing": "^7.0.0"
   },
   "scripts": {

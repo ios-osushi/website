@@ -8,7 +8,12 @@
         ]
       }
     },
-    "period-in-list-item": true
+    "period-in-list-item": true,
+    "preset-ja-spacing": {
+      "ja-space-between-half-and-full-width": {
+        "space": "always"
+      }
+    }
   },
   "filters": {
     "comments": true
