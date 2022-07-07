@@ -7,7 +7,8 @@
           "世界開発者会議"
         ]
       }
-    }
+    },
+    "period-in-list-item": true
   },
   "filters": {
     "comments": true
