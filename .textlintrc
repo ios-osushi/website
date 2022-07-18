@@ -1,0 +1,27 @@
+{
+  "rules": {
+    "preset-ja-technical-writing": {
+      "no-exclamation-question-mark": false,
+      "max-kanji-continuous-len": {
+        allow: [
+          "世界開発者会議"
+        ]
+      }
+    },
+    "period-in-list-item": true,
+    "preset-ja-spacing": {
+      "ja-space-between-half-and-full-width": {
+        "space": "always"
+      },
+      "ja-space-around-code": {
+        "before": true,
+        "after": true
+      }
+    },
+    "no-mixed-zenkaku-and-hankaku-alphabet": true
+  },
+  "filters": {
+    "comments": true
+  }
+}
+

@@ -35,6 +35,23 @@ iOS OsushiのWebサイトのソースです。
 
 `make run` を実行し、 http://localhost:8000 へアクセスすると、プレビューが表示されます。
 
+## 校正
+
+[textlint](https://github.com/textlint/textlint) を使って文章を校正しています。
+
+### 必要条件
+
+- Node.js 16
+
+### セットアップ
+
+`npm install` を実行するのみです。
+
+### 校正の実行
+
+`npm run lint` を実行するのみです。  
+`npm run fix` を実行すると自動修正します。
+
 ## 貢献
 
 貢献をお待ちしています :relaxed:
