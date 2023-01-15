@@ -249,7 +249,7 @@ private struct SiteFooter: Component {
     var body: Component {
         Footer {
             Paragraph {
-                Text("© 2022 iOS Osushi")
+                Text("© 2023 iOS Osushi")
             }
             Paragraph {
                 Text("Generated using ")
