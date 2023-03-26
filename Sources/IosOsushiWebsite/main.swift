@@ -19,6 +19,7 @@ struct IosOsushiWebsite: Publish.Website {
     var description = "iOS関連のニュースを定期的に配信します。"
     var language: Language { .japanese }
     var imagePath: Path? { nil }
+    var favicon: Favicon? { .init(path: "images/favicon.svg", type: "image/svg+xml") }
 }
 
 // This will generate your website using the built-in Foundation theme:
