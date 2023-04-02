@@ -33,7 +33,7 @@ jobs:
       run: |
         WORK_BRANCH_NAME="feature/${{ github.event.inputs.post_number }}_${{ github.event.inputs.post_date }}"
         git switch -c "$WORK_BRANCH_NAME"
-        echo "::set-output name=work_branch_name::$WORK_BRANCH_NAME"
+        echo "work_branch_name=$WORK_BRANCH_NAME" >> $GITHUB_OUTPUT
 
     - name: Create post
       id: create_post
@@ -50,7 +50,7 @@ jobs:
         git add $POST_FILE
         git commit -m "Create $POST_FILENAME"
         git push origin ${{ steps.create_work_branch.outputs.work_branch_name }}
-        echo "::set-output name=post_filename::$POST_FILENAME"
+        echo "post_filename=$POST_FILENAME" >> $GITHUB_OUTPUT
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
