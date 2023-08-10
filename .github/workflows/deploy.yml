@@ -11,7 +11,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: "swift:5.6"
+    container: "swift:5.7"
     steps:
     - uses: actions/checkout@v3
     - name: Build
@@ -22,7 +22,7 @@ jobs:
 
   deploy-github-pages:
     runs-on: ubuntu-latest
-    container: "swift:5.6"
+    container: "swift:5.7"
     needs: build
     steps:
     - uses: actions/checkout@v3
