@@ -13,7 +13,7 @@ iOS OsushiのWebサイトのソースです。
 
 ### 必要条件
 
-- Xcode 14.0+ (Swift 5.7+)
+- Xcode 13.3+ (Swift 5.6+)
 - Python
 - Make
 
