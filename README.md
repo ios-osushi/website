@@ -19,7 +19,7 @@ iOS OsushiのWebサイトのソースです。
 
 ### セットアップ
 
-1. このプロジェクトをクローンします。  
+1. このプロジェクトをクローンします。
     ```shell
     $ git clone https://github.com/ios-osushi/website.git
     $ cd website
@@ -51,8 +51,10 @@ iOS OsushiのWebサイトのソースです。
 
 ### 校正の実行
 
-`npm run lint` を実行するのみです。  
-`npm run fix` を実行すると自動修正します。
+- `npm run lint` を実行するのみです。
+- `npm run fix` を実行すると自動修正します。
+
+`git commit` をすると上記 2 つは自動で実行されます。
 
 ## 貢献
 

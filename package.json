@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "husky": "^8.0.3",
     "textlint": "^12.2.1",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet": "^1.0.1",
@@ -9,6 +10,7 @@
   },
   "scripts": {
     "lint": "npx textlint ./Content/posts/*.md",
-    "fix": "npx textlint --fix ./Content/posts/*.md"
+    "fix": "npx textlint --fix ./Content/posts/*.md",
+    "prepare": "husky install"
   }
 }
