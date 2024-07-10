@@ -12,9 +12,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: "swift:5.10"
     steps:
     - uses: actions/checkout@v4
+    - uses: swift-actions/setup-swift@v2
+      with:
+        swift-version: "5.10.1"
+
     - name: Build
       run: |
         swift --version
@@ -23,9 +26,11 @@ jobs:
 
   generate-website:
     runs-on: ubuntu-latest
-    container: "swift:5.10"
     steps:
     - uses: actions/checkout@v4
+    - uses: swift-actions/setup-swift@v2
+      with:
+        swift-version: "5.10.1"
     - name: Setup
       run: make setup
     - name: Generate the website
