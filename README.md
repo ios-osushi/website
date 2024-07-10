@@ -13,7 +13,7 @@ iOS OsushiのWebサイトのソースです。
 
 ### 必要条件
 
-- Xcode 13.3+ (Swift 5.6+)
+- Xcode 15.3+ (Swift 5.10+)
 - Python
 - Make
 
@@ -43,7 +43,7 @@ iOS OsushiのWebサイトのソースです。
 
 ### 必要条件
 
-- Node.js 16
+- Node.js 20
 
 ### セットアップ
 
