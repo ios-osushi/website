@@ -12,9 +12,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: "swift:5.6"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    - uses: swift-actions/setup-swift@v2
+      with:
+        swift-version: "5.10.1"
+
     - name: Build
       run: |
         swift --version
@@ -23,9 +26,11 @@ jobs:
 
   generate-website:
     runs-on: ubuntu-latest
-    container: "swift:5.6"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    - uses: swift-actions/setup-swift@v2
+      with:
+        swift-version: "5.10.1"
     - name: Setup
       run: make setup
     - name: Generate the website
@@ -34,10 +39,10 @@ jobs:
   textlint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 20
         cache: 'npm'
     - run: npm install
     - run: npm run lint
