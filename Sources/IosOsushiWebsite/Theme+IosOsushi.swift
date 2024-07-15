@@ -249,14 +249,14 @@ private struct SiteFooter: Component {
     var body: Component {
         Footer {
             Paragraph {
-                Text("© 2023 iOS Osushi")
+                Text("© 2022-2024 iOS Osushi")
             }
             Paragraph {
                 Text("Generated using ")
                 Link("Publish", url: "https://github.com/johnsundell/publish")
             }
             Paragraph {
-                Link("Twitter", url: "https://twitter.com/ios_osushi")
+                Link("X（旧 Twitter）", url: "https://x.com/ios_osushi")
                 Text(" | ")
                 Link("GitHub", url: "https://github.com/ios-osushi")
                 Text(" | ")
