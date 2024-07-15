@@ -256,7 +256,7 @@ private struct SiteFooter: Component {
                 Link("Publish", url: "https://github.com/johnsundell/publish")
             }
             Paragraph {
-                Link("X (Twitter)", url: "https://x.com/ios_osushi")
+                Link("X（旧 Twitter）", url: "https://x.com/ios_osushi")
                 Text(" | ")
                 Link("GitHub", url: "https://github.com/ios-osushi")
                 Text(" | ")
