@@ -3,11 +3,12 @@
     "preset-ja-technical-writing": {
       "no-exclamation-question-mark": false,
       "max-kanji-continuous-len": {
-        allow: [
+        "allow": [
           "世界開発者会議",
           "価格設定機能",
           "太平洋夏時間",
           "航空宇宙産業",
+          "準同型暗号化"
         ]
       }
     },
