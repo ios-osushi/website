@@ -1,0 +1,29 @@
+name: Create X Post
+
+on:
+  push:
+    branches: 
+      - feature/x_automation_post
+
+permissions:
+  contents: read
+
+jobs:
+  get-latest-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get the latest file
+        run: |
+          # 指定ディレクトリに移動
+          cd path/to/your/directory
+
+          # 最新のファイルを見つける
+          LATEST_FILE=$(ls *.md | awk -F '-' '{print $1}' | sort -n | tail -n 1)
+          echo "Latest file number: $LATEST_FILE"
+
+          # 最新のファイル名を取得
+          LATEST_FILENAME="${LATEST_FILE}-$(ls ${LATEST_FILE}-*.md | awk -F '-' '{print $2}')"
+          echo "Latest file name: $LATEST_FILENAME"
