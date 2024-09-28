@@ -36,18 +36,28 @@ jobs:
 
           # 結果をGitHub Actionsの出力として設定
           echo "Latest file name without extension: $LATEST_FILENAME_NO_EXT"
-          echo "latest_file_name=${LATEST_FILENAME}" >> $GITHUB_ENV
+          echo "latest_file_name=${LATEST_FILENAME_NO_EXT}" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        run: |
-          pip install tweepy
+          # 最新のファイルの内容を読み込む
+          FILE_CONTENT=$(cat "$LATEST_FILENAME")
 
-      - name: Post article
-        env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-          X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-          X_POST_MESSAGE: "この投稿は自動化をテストしている投稿です！\n\niOS関連ニュースの第${{ env.latest_file_number }}回をお届けします🍣\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
-        run: python tweet.py
+          # descriptionの内容を抽出
+          DESCRIPTION=$(echo "$FILE_CONTENT" | awk '/^description:/ {print substr($0, index($0, $2))}')
+          echo "description=${DESCRIPTION}" >> $GITHUB_ENV  # 環境変数に設定
+
+          echo "::set-output name=latest_filename::$LATEST_FILENAME"
+          echo "::set-output name=description::$DESCRIPTION"
+
+      # - name: Install dependencies
+      #   run: |
+      #     pip install tweepy
+
+      # - name: Post article
+      #   env:
+      #     X_API_KEY: ${{ secrets.X_API_KEY }}
+      #     X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+      #     X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+      #     X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+      #     X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+      #     X_POST_MESSAGE: "この投稿は自動化をテストしている投稿です！\n\niOS関連ニュースの第${{ env.latest_file_number }}回をお届けします🍣\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
+      #   run: python tweet.py
