@@ -43,7 +43,7 @@ jobs:
 
       - name: Post article
         env:
-          X_APIKEY: ${{ secrets.X_API_KEY }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
           X_API_SECRET: ${{ secrets.X_API_KEY_SECRET }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
