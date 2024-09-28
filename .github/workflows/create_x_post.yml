@@ -1,0 +1,63 @@
+name: Create X Post
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    environment: X_Automation
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Get the latest file
+        run: |
+          cd Content/posts
+
+          # 最新のファイルを見つける
+          LATEST_FILE=$(ls *.md | awk -F '-' '{print $1}' | sort -n | tail -n 1)
+          echo "Latest file number: $LATEST_FILE"
+          echo "latest_file_number=${LATEST_FILE}" >> $GITHUB_ENV
+          
+          # 最新のファイル名を取得し、.mdを取り除く
+          LATEST_FILENAME="${LATEST_FILE}-$(ls ${LATEST_FILE}-*.md | awk -F '-' '{print $2}')"
+          LATEST_FILENAME_NO_EXT="${LATEST_FILENAME%.md}"
+
+          # 結果をGitHub Actionsの出力として設定
+          echo "Latest file name without extension: $LATEST_FILENAME_NO_EXT"
+          echo "latest_file_name=${LATEST_FILENAME_NO_EXT}" >> $GITHUB_ENV
+
+          # 最新のファイルの内容を読み込む
+          FILE_CONTENT=$(cat "$LATEST_FILENAME")
+
+          # descriptionの内容を抽出
+          DESCRIPTION=$(echo "$FILE_CONTENT" | awk '/^description:/ {print substr($0, index($0, $2))}')
+          # 200バイトを超える場合の処理
+          if [ ${#DESCRIPTION} -gt 200 ]; then
+            DESCRIPTION="${DESCRIPTION:0:197}..."
+          fi
+          echo "description: $DESCRIPTION"
+          echo "description=${DESCRIPTION}" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          pip install tweepy
+
+      - name: Post article
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          X_POST_MESSAGE: "iOS関連ニュースの第${{ env.latest_file_number }}回をお届けします🍣\n\n${{ env.description }}\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
+        run: python tweet.py
