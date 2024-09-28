@@ -9,8 +9,10 @@ ats = os.environ['X_ACCESS_TOKEN_SECRET']
 
 client = tweepy.Client(
     bearer_token=bt,
-    consumer_key=ck, consumer_secret=cs,
-    access_token=at, access_token_secret=ats
+    consumer_key=ck,
+    consumer_secret=cs,
+    access_token=at,
+    access_token_secret=ats
 )
 
 content = os.getenv('X_POST_MESSAGE')

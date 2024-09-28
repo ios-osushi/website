@@ -28,6 +28,7 @@ jobs:
           # 最新のファイルを見つける
           LATEST_FILE=$(ls *.md | awk -F '-' '{print $1}' | sort -n | tail -n 1)
           echo "Latest file number: $LATEST_FILE"
+          echo "latest_file_number=${LATEST_FILE}" >> $GITHUB_ENV
           
           # 最新のファイル名を取得し、.mdを取り除く
           LATEST_FILENAME="${LATEST_FILE}-$(ls ${LATEST_FILE}-*.md | awk -F '-' '{print $2}')"
@@ -48,5 +49,5 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-          X_POST_MESSAGE: "この投稿は自動化をテストしている投稿です！ ファイル名：${{ steps.get_latest_file.outputs.latest_filename }}"
+          X_POST_MESSAGE: "この投稿は自動化をテストしている投稿です！\n\niOS関連ニュースの第${{ env.latest_file_number }}回をお届けします🍣\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
         run: python tweet.py
