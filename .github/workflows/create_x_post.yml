@@ -17,8 +17,7 @@ jobs:
 
       - name: Get the latest file
         run: |
-          # 指定ディレクトリに移動
-          cd path/to/your/directory
+          cd Content/posts
 
           # 最新のファイルを見つける
           LATEST_FILE=$(ls *.md | awk -F '-' '{print $1}' | sort -n | tail -n 1)
