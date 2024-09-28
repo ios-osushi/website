@@ -74,8 +74,6 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
                             }
                             .class("share-buttons")
                             Div(item.content.body).class("content")
-                            Span("タグ: ")
-                            ItemTagList(item: item, site: context.site)
                         }
                     }
                     SiteFooter()
@@ -97,54 +95,11 @@ private struct IosOsushiHTMLFactory<Site: Website>: HTMLFactory {
     }
 
     func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
-        HTML(
-            .lang(context.site.language),
-            .head(for: page, on: context.site),
-            .body {
-                SiteHeader(context: context, selectedSelectionID: nil)
-                Wrapper {
-                    H1("すべてのタグ")
-                    List(page.tags.sorted()) { tag in
-                        ListItem {
-                            Link(tag.string, url: context.site.path(for: tag).absoluteString)
-                        }
-                        .class("tag")
-                    }
-                    .class("all-tags")
-                }
-                SiteFooter()
-            }
-        )
+        nil
     }
 
     func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<Site>) throws -> HTML? {
-        HTML(
-            .lang(context.site.language),
-            .head(for: page, on: context.site),
-            .body {
-                SiteHeader(context: context, selectedSelectionID: nil)
-                Wrapper {
-                    H1 {
-                        Text("タグ: ")
-                        Span(page.tag.string).class("tag")
-                    }
-
-                    Link("すべてのタグを見る", url: context.site.tagListPath.absoluteString
-                    )
-                    .class("browse-all")
-
-                    ItemList(
-                        items: context.items(
-                            taggedWith: page.tag,
-                            sortedBy: \.date,
-                            order: .descending
-                        ),
-                        site: context.site
-                    )
-                }
-                SiteFooter()
-            }
-        )
+        nil
     }
 
     private struct TweetButton<Site: Website>: Component {
@@ -225,23 +180,10 @@ private struct ItemList<Site: Website>: Component {
         List(items) { item in
             Article {
                 H1(Link(item.title, url: item.path.absoluteString))
-                ItemTagList(item: item, site: site)
                 Paragraph(item.description)
             }
         }
         .class("item-list")
-    }
-}
-
-private struct ItemTagList<Site: Website>: Component {
-    var item: Item<Site>
-    var site: Site
-
-    var body: Component {
-        List(item.tags) { tag in
-            Link(tag.string, url: site.path(for: tag).absoluteString)
-        }
-        .class("tag-list")
     }
 }
 
