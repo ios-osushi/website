@@ -22,7 +22,8 @@ jobs:
           # 最新のファイルを見つける
           LATEST_FILE=$(ls *.md | awk -F '-' '{print $1}' | sort -n | tail -n 1)
           echo "Latest file number: $LATEST_FILE"
-
-          # 最新のファイル名を取得
+          
+          # 最新のファイル名を取得し、.mdを取り除く
           LATEST_FILENAME="${LATEST_FILE}-$(ls ${LATEST_FILE}-*.md | awk -F '-' '{print $2}')"
-          echo "Latest file name: $LATEST_FILENAME"
+          LATEST_FILENAME_NO_EXT="${LATEST_FILENAME%.md}"  # .mdを削除
+          echo "Latest file name without extension: $LATEST_FILENAME_NO_EXT"
