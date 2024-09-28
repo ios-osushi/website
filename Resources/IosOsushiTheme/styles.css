@@ -104,30 +104,6 @@ a {
     margin-bottom: 0;
 }
 
-.tag-list {
-    margin-bottom: 10px;
-}
-
-.tag-list li,
-.tag {
-    display: inline-block;
-    background-color: #000;
-    color: #ddd;
-    padding: 4px 6px;
-    border-radius: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
-.tag-list a,
-.tag a {
-    text-decoration: none;
-}
-
-.item-page .tag-list {
-    display: inline-block;
-}
-
 .content {
     margin-bottom: 40px;
     overflow-wrap: break-word;
@@ -156,13 +132,6 @@ a {
 .browse-all {
     display: block;
     margin-bottom: 30px;
-}
-
-.all-tags li {
-    font-size: 1.4em;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    padding: 6px 10px;
 }
 
 footer {
