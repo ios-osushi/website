@@ -43,12 +43,10 @@ jobs:
 
       - name: Post article
         env:
-          TWITTER_CONSUMER_KEY: ${{ secrets.X_API_KEY }}
-          TWITTER_CONSUMER_SECRET: ${{ secrets.X_API_KEY_SECRET }}
-          TWITTER_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-          TWITTER_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-        run: |
-          # ツイートするメッセージを指定
-          TWEET_MESSAGE="この投稿は自動化をテストしている投稿です！ ファイル名：$LATEST_FILENAME"
-          python tweet.py "$TWEET_MESSAGE"
+          X_CONSUMER_KEY: ${{ secrets.X_API_KEY }}
+          X_CONSUMER_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          X_POST_MESSAGE: "この投稿は自動化をテストしている投稿です！ ファイル名：${{ steps.get_latest_file.outputs.latest_filename }}"
+        run: python tweet.py

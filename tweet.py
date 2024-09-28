@@ -2,10 +2,10 @@ import os
 import requests
 
 # 環境変数からTwitterのアクセストークンを取得
-bearer_token = os.environ['_BEARER_TOKEN']
+bearer_token = os.environ['X_BEARER_TOKEN']
 
 # ツイート内容をコマンドライン引数から取得
-tweet_content = os.getenv('TWEET_MESSAGE')
+tweet_content = os.getenv('X_POST_MESSAGE')
 
 # ツイートを作成するエンドポイント
 url = "https://api.twitter.com/2/tweets"
