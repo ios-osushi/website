@@ -9,11 +9,17 @@ permissions:
   contents: read
 
 jobs:
-  get-latest-file:
+  tweet:
     runs-on: ubuntu-latest
+    environment: X_Automation
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
       - name: Get the latest file
         run: |
@@ -26,4 +32,23 @@ jobs:
           # 最新のファイル名を取得し、.mdを取り除く
           LATEST_FILENAME="${LATEST_FILE}-$(ls ${LATEST_FILE}-*.md | awk -F '-' '{print $2}')"
           LATEST_FILENAME_NO_EXT="${LATEST_FILENAME%.md}"  # .mdを削除
+
+          # 結果をGitHub Actionsの出力として設定
           echo "Latest file name without extension: $LATEST_FILENAME_NO_EXT"
+          echo "latest_file_name=${LATEST_FILENAME}" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          pip install tweepy
+
+      - name: Tweet
+        env:
+          TWITTER_CONSUMER_KEY: ${{ secrets.X_API_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+          TWITTER_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: |
+          # ツイートするメッセージを指定
+          TWEET_MESSAGE="この投稿は自動化をテストしている投稿です！ ファイル名：$LATEST_FILENAME"
+          python tweet.py "$TWEET_MESSAGE"
