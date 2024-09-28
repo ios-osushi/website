@@ -1,4 +1,5 @@
 import tweepy
+import os
 
 ck = os.environ['X_API_KEY']
 cs = os.environ['X_API_KEY_SECRET']
