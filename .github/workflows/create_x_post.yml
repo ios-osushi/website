@@ -1,7 +1,9 @@
 name: Create X Post
 
 on:
-  workflow_dispatch:
+  push:
+    branches: 
+      - feature/x_automation_post
 
 permissions:
   contents: read
@@ -41,19 +43,24 @@ jobs:
 
           # descriptionの内容を抽出
           DESCRIPTION=$(echo "$FILE_CONTENT" | awk '/^description:/ {print substr($0, index($0, $2))}')
+
+          # 200バイトを超える場合の処理
+          if [ ${#DESCRIPTION} -gt 200 ]; then
+            DESCRIPTION="${DESCRIPTION:0:197}..."
+          fi
           echo "description: $DESCRIPTION"
           echo "description=${DESCRIPTION}" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        run: |
-          pip install tweepy
+      # - name: Install dependencies
+      #   run: |
+      #     pip install tweepy
 
-      - name: Post article
-        env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-          X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-          X_POST_MESSAGE: "iOS関連ニュースの第${{ env.latest_file_number }}回をお届けします🍣\n\n${{ env.description }}\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
-        run: python tweet.py
+      # - name: Post article
+      #   env:
+      #     X_API_KEY: ${{ secrets.X_API_KEY }}
+      #     X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+      #     X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+      #     X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+      #     X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+      #     X_POST_MESSAGE: "\n\n${{ env.description }}\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
+      #   run: python tweet.py
