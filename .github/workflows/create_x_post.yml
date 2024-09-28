@@ -41,7 +41,7 @@ jobs:
         run: |
           pip install tweepy
 
-      - name: Tweet
+      - name: Post article
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.X_API_KEY }}
           TWITTER_CONSUMER_SECRET: ${{ secrets.X_API_KEY_SECRET }}
