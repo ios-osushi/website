@@ -1,9 +1,7 @@
 name: Create X Post
 
 on:
-  push:
-    branches: 
-      - feature/x_automation_post
+  workflow_dispatch:
 
 permissions:
   contents: read
