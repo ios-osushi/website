@@ -42,8 +42,8 @@ jobs:
           FILE_CONTENT=$(cat "$LATEST_FILENAME")
 
           # descriptionの内容を抽出
-          echo "description: $DESCRIPTION"
           DESCRIPTION=$(echo "$FILE_CONTENT" | awk '/^description:/ {print substr($0, index($0, $2))}')
+          echo "description: $DESCRIPTION"
           echo "description=${DESCRIPTION}" >> $GITHUB_ENV
 
       # - name: Install dependencies
