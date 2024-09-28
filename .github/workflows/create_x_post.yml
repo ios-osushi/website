@@ -57,5 +57,5 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-          X_POST_MESSAGE: "この投稿は自動化をテストしている投稿です！\n\niOS関連ニュースの第${{ env.latest_file_number }}回をお届けします🍣\n\n${{ env.description }}\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
+          X_POST_MESSAGE: "iOS関連ニュースの第${{ env.latest_file_number }}回をお届けします🍣\n\n${{ env.description }}\n\nhttps://ios-osushi.github.io/posts/${{ env.latest_file_name }}/ \n#ios_osushi"
         run: python tweet.py
