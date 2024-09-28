@@ -1,32 +1,17 @@
-import os
-import requests
-from requests_oauthlib import OAuth1
+import tweepy
 
-# 環境変数からTwitterの認証情報を取得
-consumer_key = os.environ['X_API_KEY']
-consumer_secret = os.environ['X_API_KEY_SECRET']
-access_token = os.environ['X_ACCESS_TOKEN']
-access_token_secret = os.environ['X_ACCESS_TOKEN_SECRET']
+ck = os.environ['X_API_KEY']
+cs = os.environ['X_API_KEY_SECRET']
+bt = os.environ['X_BEARER_TOKEN']
+at = os.environ['X_ACCESS_TOKEN']
+ats = os.environ['X_ACCESS_TOKEN_SECRET']
 
-# ツイート内容をコマンドライン引数から取得
-tweet_content = os.getenv('X_POST_MESSAGE')
+client = tweepy.Client(
+    bearer_token=bt,
+    consumer_key=ck, consumer_secret=cs,
+    access_token=at, access_token_secret=ats
+)
 
-# OAuth1認証
-auth = OAuth1(consumer_key, consumer_secret, access_token, access_token_secret)
+content = os.getenv('X_POST_MESSAGE')
 
-# ツイートを作成するエンドポイント
-url = "https://api.twitter.com/1.1/statuses/update.json"
-
-# リクエストボディ
-data = {
-    "status": tweet_content,
-}
-
-# POSTリクエストを送信
-response = requests.post(url, auth=auth, data=data)
-
-# レスポンスを確認
-if response.status_code == 200:
-    print("ツイートが正常に投稿されました！")
-else:
-    print(f"エラーが発生しました: {response.status_code} - {response.json()}")
+client.create_tweet(text=content)
