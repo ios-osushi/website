@@ -1,19 +1,31 @@
-import sys
-import tweepy
 import os
+import requests
 
-# 環境変数からトークンを取得
-consumer_key = os.getenv('TWITTER_CONSUMER_KEY')
-consumer_secret = os.getenv('TWITTER_CONSUMER_SECRET')
-access_token = os.getenv('TWITTER_ACCESS_TOKEN')
-access_token_secret = os.getenv('TWITTER_ACCESS_TOKEN_SECRET')
+# 環境変数からTwitterのアクセストークンを取得
+bearer_token = os.environ['_BEARER_TOKEN']
 
-# 認証を行う
-auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
-api = tweepy.API(auth)
+# ツイート内容をコマンドライン引数から取得
+tweet_content = os.getenv('TWEET_MESSAGE')
 
-# コマンドライン引数からメッセージを取得
-message = sys.argv[1]
+# ツイートを作成するエンドポイント
+url = "https://api.twitter.com/2/tweets"
 
-# ツイート投稿
-api.update_status(message)
+# リクエストヘッダー
+headers = {
+    "Authorization": f"Bearer {bearer_token}",
+    "Content-Type": "application/json",
+}
+
+# リクエストボディ
+data = {
+    "text": tweet_content,
+}
+
+# POSTリクエストを送信
+response = requests.post(url, headers=headers, json=data)
+
+# レスポンスを確認
+if response.status_code == 201:
+    print("ツイートが正常に投稿されました！")
+else:
+    print(f"エラーが発生しました: {response.status_code} - {response.json()}")
