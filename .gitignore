@@ -5,6 +5,7 @@
 /*.xcodeproj
 .publish
 Output
+.vscode
 
 # Node.js
 node_modules
